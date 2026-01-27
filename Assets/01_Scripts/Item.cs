@@ -6,8 +6,9 @@ public class Item : MonoBehaviour
 {
     [SerializeField][Range(0f, 100f)] float speed;
     [SerializeField] AudioClip colletSound;
-    public PlayerBall player;
+
     public GameManager manager;
+    private bool isCollected = false; // 버그 수정
 
     private void Awake()
     {
@@ -20,6 +21,8 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (isCollected) return;
+
         if (other.gameObject.name == "Player")
         {
             PlayerBall player = other.GetComponent<PlayerBall>();
