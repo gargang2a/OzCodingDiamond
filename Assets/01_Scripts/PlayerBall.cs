@@ -13,6 +13,13 @@ public class PlayerBall : MonoBehaviour
     private bool isGrounded;
     private bool jumpRequested;
 
+    private void Reset()
+    {
+        joystick = FindObjectOfType<Joystick>();
+        speed = 5f;
+        jumpPower = 5.5f;
+    }
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();

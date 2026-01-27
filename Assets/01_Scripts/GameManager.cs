@@ -11,6 +11,13 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI stageCountText;
     public TextMeshProUGUI PlayerCountText;
 
+    // ºü¸£°Ô ³ÖÀÚ.. ±ÍÂú..
+    public void Reset()
+    {
+        stageCountText = GameObject.Find("Total Score").GetComponent<TextMeshProUGUI>();
+        PlayerCountText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+    }
+
     public void GetItem(int count)
     {
         PlayerCountText.text = count.ToString();
