@@ -23,7 +23,7 @@ public class FinishPoint : MonoBehaviour
             {
                 AudioSource.PlayClipAtPoint(finishSound, transform.position);
                 manager.stageCount++;
-                Invoke(nameof(ReloadScene), 0.7f);
+                Invoke(nameof(LoadNextStage), 0.7f);
             }
             else
             {
@@ -46,6 +46,20 @@ public class FinishPoint : MonoBehaviour
                 Invoke(nameof(ReloadScene), 0.7f);
             }
         }
+    }
+
+    private void LoadNextStage()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+        int totalSceneCount = SceneManager.sceneCountInBuildSettings;
+        
+        if (nextSceneIndex >= totalSceneCount) // 루프 스테이지
+        {
+            nextSceneIndex = 0;
+            manager.stageCount = 1;
+        }
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     public void ReloadScene()
